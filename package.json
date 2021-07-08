@@ -1,0 +1,12 @@
+{
+   "private": true,
+   "name": "teams-manager",
+   "workspaces": [
+      "client",
+      "server"
+   ],
+   "scripts": {},
+   "dependencies": {
+      "concurrently": "^6.2.0"
+   }
+}
