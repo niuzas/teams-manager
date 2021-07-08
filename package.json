@@ -1,12 +1,15 @@
 {
-   "private": true,
-   "name": "teams-manager",
-   "workspaces": [
-      "client",
-      "server"
-   ],
-   "scripts": {},
-   "dependencies": {
-      "concurrently": "^6.2.0"
-   }
+  "private": true,
+  "name": "teams-manager",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server run dev",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
 }
