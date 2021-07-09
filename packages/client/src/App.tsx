@@ -1,11 +1,13 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
-import LoginForm from './components/LoginForm';
-import { Context } from './index';
-import { observer } from 'mobx-react-lite';
-import { IUser } from './models/IUser';
-import UserService from './services/UserService';
 import axios from 'axios';
+import { observer } from 'mobx-react-lite';
+
+import LoginForm from './components/LoginForm/LoginForm';
+import Loader from './components/Loader/Loader';
+import UserService from './services/UserService';
+import { Context } from './index';
 import { AuthResponse } from './models/response/AuthResponse';
+import { IUser } from './models/IUser';
 import { API_URL } from './api';
 
 const App: FC = () => {
@@ -43,7 +45,7 @@ const App: FC = () => {
   }
 
   if (store.isLoading) {
-    return <div>Užkraunama...</div>;
+    return <Loader></Loader>;
   }
 
   if (!store.isAuth) {
