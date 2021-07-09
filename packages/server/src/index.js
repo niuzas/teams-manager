@@ -7,6 +7,8 @@ const router = require('./router/index');
 const errorMiddleware = require('./middlewares/error-middleware');
 
 const PORT = process.env.PORT || 5000;
+const DB_URL = process.env.DB_URL;
+const dbServer = DB_URL.split('@')[1].split('/')[0];
 const app = express();
 
 app.use(express.json());
@@ -22,15 +24,17 @@ app.use(errorMiddleware);
 
 const start = async () => {
   try {
-    await mongoose.connect(process.env.DB_URL, {
+    await mongoose.connect(DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log('MongoDB Connected...');
-    app.listen(PORT, () => console.log(`Server started on PORT = ${PORT}`));
+    console.log(`MongoDB status: connected to ${dbServer}`);
+    app.listen(PORT, () => console.log(`Express HTTP server started on TCP PORT ${PORT}`));
   } catch (e) {
-    console.log(e);
+    console.log('MongoDB connection error:', e.message);
+    // Exit process with failure
+    process.exit(1);
   }
 };
 
