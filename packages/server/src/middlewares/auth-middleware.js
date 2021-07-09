@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
 
     const accessToken = authorizationHeader.split(' ')[1];
     if (!accessToken) {
-      return next(ApiError.UnauthorizedError('!accessToken'));
+      return next(ApiError.UnauthorizedError('!accessToken - access token not found in authorizationHeader'));
     }
 
     const userData = tokenService.validateAccessToken(accessToken);

@@ -30,7 +30,7 @@ const start = async () => {
       useCreateIndex: true,
     });
     console.log(`MongoDB status: connected to ${dbServer}`);
-    app.listen(PORT, () => console.log(`Express HTTP server started on TCP PORT ${PORT}`));
+    app.listen(PORT, () => console.log(`Express HTTP server status: started on TCP PORT ${PORT}`));
   } catch (e) {
     console.log('MongoDB connection error:', e.message);
     // Exit process with failure

@@ -5,7 +5,7 @@ const ApiError = require('../exceptions/api-error');
 class TokenService {
   generateTokens(payload) {
     const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '5s' });
-    const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' });
+    const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30s' });
     return {
       accessToken,
       refreshToken,
@@ -17,8 +17,8 @@ class TokenService {
       const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
       return userData;
     } catch (e) {
-      console.log('Function: validateAccessToken, token:', token, 'Error:', e);
-      throw Error(e); // for sending detailed info about error to client
+      console.log('Function: validateAccessToken Token:', token, 'Error:', e);
+      throw ApiError.UnauthorizedError(`Function: validateAccessToken ${e}`); // for sending detailed info about error to client
       // return null;
     }
   }
@@ -28,7 +28,8 @@ class TokenService {
       const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
       return userData;
     } catch (e) {
-      throw Error(e); // for sending detailed info about error to client
+      console.log('Function: validateRefreshToken Token:', token, 'Error:', e);
+      throw ApiError.UnauthorizedError(`Function: validateRefreshToken ${e}`); // for sending detailed info about error to client
       // return null;
     }
   }

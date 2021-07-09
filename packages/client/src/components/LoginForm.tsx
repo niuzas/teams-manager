@@ -12,14 +12,20 @@ const LoginForm: FC = () => {
     <div>
       <form>
         <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Vardas" />
-        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" placeholder="Emeilas" />
-        <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Slaptažodis" />
+        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" placeholder="Emeilas" autoComplete="username" />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          type="password"
+          placeholder="Slaptažodis"
+          autoComplete="new-password"
+        />
       </form>
       <button onClick={() => store.registration(name, email, password)}>Registruotis</button>
 
       <form>
-        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" placeholder="Emeilas" />
-        <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Slaptažodis" />
+        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" placeholder="Emeilas" autoComplete="username" />
+        <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Slaptažodis" autoComplete="on" />
       </form>
       <button onClick={() => store.login(email, password)}>Prisijungti</button>
     </div>

@@ -4,15 +4,33 @@ import { Context } from './index';
 import { observer } from 'mobx-react-lite';
 import { IUser } from './models/IUser';
 import UserService from './services/UserService';
+import axios from 'axios';
+import { AuthResponse } from './models/response/AuthResponse';
+import { API_URL } from './api';
 
 const App: FC = () => {
   const { store } = useContext(Context);
   const [users, setUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      store.checkAuth();
+    async function checkAuth() {
+      store.setLoading(true);
+      try {
+        const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, { withCredentials: true });
+        console.log(response);
+        localStorage.setItem('token', response.data.accessToken);
+        store.setAuth(true);
+        store.setUser(response.data.user);
+      } catch (e) {
+        console.log(e.response?.data?.message);
+      } finally {
+        store.setLoading(false);
+      }
     }
+    if (localStorage.getItem('token')) {
+      checkAuth();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getUsers() {

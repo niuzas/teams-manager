@@ -3,7 +3,7 @@ import {makeAutoObservable} from "mobx";
 import AuthService from "../services/AuthService";
 import axios from 'axios';
 import {AuthResponse} from "../models/response/AuthResponse";
-import {API_URL} from "../http";
+import {API_URL} from "../api";
 
 export default class Store {
     user = {} as IUser;
@@ -53,9 +53,11 @@ export default class Store {
     async logout() {
         try {
             const response = await AuthService.logout();
+            console.log("logout response:", response)
             localStorage.removeItem('token');
             this.setAuth(false);
             this.setUser({} as IUser);
+            
         } catch (e) {
             console.log(e.response?.data?.message);
         }
@@ -75,4 +77,6 @@ export default class Store {
             this.setLoading(false);
         }
     }
+
+
 }
