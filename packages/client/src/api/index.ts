@@ -1,9 +1,11 @@
 import axios from 'axios';
-import {AuthResponse} from "../models/response/AuthResponse";
+import {AuthResponse} from "../models/AuthResponse";
 // import {store} from "../index";
 // import {IUser} from "../models/IUser";
 
 export const API_URL = `http://localhost:5000/api`
+export const API_AUTH = `${API_URL}/auth`
+export const API_USERS = `${API_URL}/users`
 
 const $api = axios.create({
     withCredentials: true,
@@ -23,7 +25,7 @@ $api.interceptors.response.use((config) => {
         originalRequest._isRetry = true;
         console.log("Access token problem:", error.response.data.message)
         try {
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
+            const response = await axios.get<AuthResponse>(`${API_AUTH}/refresh`, {withCredentials: true})
             localStorage.setItem('token', response.data.accessToken);
             console.log("Refresh response:", response)
             return $api.request(originalRequest);

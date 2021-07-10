@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 
@@ -7,9 +7,9 @@ import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import UsersList from './components/UsersList/UsersList';
 import Loader from './components/Loader/Loader';
 import { Context } from './index';
-import { AuthResponse } from './models/response/AuthResponse';
+import { AuthResponse } from './models/AuthResponse';
 
-import { API_URL } from './api';
+import { API_AUTH } from './api';
 
 const App: FC = () => {
   const { store } = useContext(Context);
@@ -18,7 +18,7 @@ const App: FC = () => {
     async function checkAuth() {
       store.setLoading(true);
       try {
-        const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, { withCredentials: true });
+        const response = await axios.get<AuthResponse>(`${API_AUTH}/refresh`, { withCredentials: true });
         console.log(response);
         localStorage.setItem('token', response.data.accessToken);
         store.setAuth(true);

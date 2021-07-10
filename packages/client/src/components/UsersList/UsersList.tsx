@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import UserService from '../../services/UserService';
 import { IUser } from '../../models/IUser';
