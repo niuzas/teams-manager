@@ -23,9 +23,11 @@ const TeamsList: FC = () => {
 
   return (
     <S.TeamsListBlock>
-      {teams.map((team) => (
-        <TeamCard key={team._id} logo={team.logo} title={team.title} score={team.score} _id={team._id}></TeamCard>
-      ))}
+      {teams
+        .sort((a, b) => b.score - a.score)
+        .map((team) => (
+          <TeamCard key={team._id} logo={team.logo} title={team.title} score={team.score} _id={team._id}></TeamCard>
+        ))}
     </S.TeamsListBlock>
   );
 };
