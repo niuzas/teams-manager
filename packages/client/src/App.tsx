@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC, useContext, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Loader from './components/Loader/Loader';
+import { Context } from './index';
+import * as P from './pages';
 
-export default App;
+const App: FC = () => {
+  const { store } = useContext(Context);
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      store.checkAuth();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (store.isLoading) {
+    return <Loader></Loader>;
+  }
+
+  if (!store.isAuth) {
+    return (
+      <div>
+        <P.Home></P.Home>
+      </div>
+    );
+  }
+
+  return <P.Dashboard></P.Dashboard>;
+};
+
+export default observer(App);
