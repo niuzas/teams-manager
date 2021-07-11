@@ -21,16 +21,16 @@ const TeamCard: FC<ITeam> = ({ logo, title, score, _id }) => {
             const target = e.target as HTMLElement;
             console.log('classList:', target.classList);
             console.log('style:', target.style);
-            // setTeamScore(teamScore + 1);
-            console.log(await store.votePlus(_id, store.user.id));
+            const result = await store.votePlus(_id, store.user.id);
+            if (result.allok) setTeamScore(teamScore + 1);
           }}
         >
           +
         </S.VoteButton>
         <S.VoteButton
-          onClick={(e) => {
-            // setTeamScore(teamScore - 1);
-            console.log(store.voteMinus(_id, store.user.id));
+          onClick={async (e) => {
+            const result = await store.voteMinus(_id, store.user.id);
+            if (result.allok) setTeamScore(teamScore - 1);
           }}
         >
           -

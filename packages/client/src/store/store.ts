@@ -85,9 +85,11 @@ export default class Store {
         try {
             const response = await TeamService.votePlus(team, user);
             console.log(response)
+            return {allok: true,response:response};
                         
         } catch (e) {
             console.log(e.response?.data?.message);
+            return {allok: false,error:e};
         }
     }
 
@@ -95,9 +97,11 @@ export default class Store {
         try {
             const response = await TeamService.voteMinus(team, user);
             console.log(response)
+            return {allok: true,response:response};
                         
         } catch (e) {
             console.log(e.response?.data?.message);
+            return {allok: false,error:e};
         }
     }
 
