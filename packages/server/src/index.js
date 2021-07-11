@@ -6,22 +6,26 @@ const mongoose = require('mongoose');
 const errorMiddleware = require('./middlewares/error-middleware');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
+const teamsRouter = require('./routes/teams');
 
 const PORT = process.env.PORT || 5000;
 const DB_URL = process.env.DB_URL;
 const dbServer = DB_URL.split('@')[1].split('/')[0];
 const app = express();
 
-app.use(express.json());
-app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
   })
 );
+app.use(express.json());
+app.use(cookieParser());
+// Routes
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/teams', teamsRouter);
+// Errors - last
 app.use(errorMiddleware);
 
 const start = async () => {
