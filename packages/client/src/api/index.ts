@@ -6,6 +6,7 @@ import {AuthResponse} from "../models/AuthResponse";
 export const API_URL = `http://localhost:5000/api`
 export const API_AUTH = `${API_URL}/auth`
 export const API_USERS = `${API_URL}/users`
+export const API_TEAMS = `${API_URL}/teams`
 
 const $api = axios.create({
     withCredentials: true,
