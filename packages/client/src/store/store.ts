@@ -1,9 +1,12 @@
+import axios from 'axios';
+
 import {IUser} from "../models/IUser";
 import {makeAutoObservable} from "mobx";
 import AuthService from "../services/AuthService";
-import axios from 'axios';
+import TeamService from "../services/TeamService";
 import {AuthResponse} from "../models/AuthResponse";
 import {API_AUTH} from "../api";
+
 
 export default class Store {
     user = {} as IUser;
@@ -78,5 +81,14 @@ export default class Store {
         }
     }
 
+    async vote(team: string, user: string) {
+        try {
+            const response = await TeamService.vote(team, user);
+            console.log(response)
+                        
+        } catch (e) {
+            console.log(e.response?.data?.message);
+        }
+    }
 
 }

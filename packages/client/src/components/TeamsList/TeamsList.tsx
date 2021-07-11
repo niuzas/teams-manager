@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import TeamService from '../../services/TeamService';
 import { ITeam } from '../../models/ITeam';
-// import { Context } from '../../index';
 import { observer } from 'mobx-react-lite';
+import TeamCard from '../TeamCard/TeamCard';
 
 import * as S from './TeamsList.style';
 
@@ -17,13 +17,14 @@ const TeamsList: FC = () => {
       console.log(e);
     }
   }
-  getTeams();
+  useEffect(() => {
+    getTeams();
+  }, []);
+
   return (
     <S.TeamsListBlock>
       {teams.map((team) => (
-        <div key={team._id}>
-          Komanda: {team.title} Taškai: {team.score}
-        </div>
+        <TeamCard key={team._id} logo={team.logo} title={team.title} score={team.score} _id={team._id}></TeamCard>
       ))}
     </S.TeamsListBlock>
   );

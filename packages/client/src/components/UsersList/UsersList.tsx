@@ -24,7 +24,9 @@ const UsersList: FC = () => {
       </div>
 
       {users.map((user) => (
-        <div key={user.email}>{user.email}</div>
+        <div key={user.email}>
+          Email:{user.email} Id: {user._id}
+        </div>
       ))}
     </S.UsersListBlock>
   );
