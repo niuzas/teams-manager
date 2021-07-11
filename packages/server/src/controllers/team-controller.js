@@ -17,10 +17,20 @@ class TeamController {
     }
   }
 
-  async vote(req, res, next) {
+  async votePlus(req, res, next) {
     try {
       const { team, user } = req.body;
-      const teamData = await teamService.vote(team, user);
+      const teamData = await teamService.votePlus(team, user);
+      return res.json(teamData);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async voteMinus(req, res, next) {
+    try {
+      const { team, user } = req.body;
+      const teamData = await teamService.voteMinus(team, user);
       return res.json(teamData);
     } catch (e) {
       next(e);

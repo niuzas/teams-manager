@@ -81,9 +81,19 @@ export default class Store {
         }
     }
 
-    async vote(team: string, user: string) {
+    async votePlus(team: string, user: string) {
         try {
-            const response = await TeamService.vote(team, user);
+            const response = await TeamService.votePlus(team, user);
+            console.log(response)
+                        
+        } catch (e) {
+            console.log(e.response?.data?.message);
+        }
+    }
+
+    async voteMinus(team: string, user: string) {
+        try {
+            const response = await TeamService.voteMinus(team, user);
             console.log(response)
                         
         } catch (e) {

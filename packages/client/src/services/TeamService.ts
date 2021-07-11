@@ -9,8 +9,12 @@ export default class UserService {
         return $api.get<ITeam[]>(`${API_TEAMS}/`)
     }
 
-    static async vote(team: string, user: string): Promise<AxiosResponse<VoteResponse>> {
-        return $api.post<VoteResponse>(`${API_TEAMS}/vote`, {team, user})
+    static async votePlus(team: string, user: string): Promise<AxiosResponse<VoteResponse>> {
+        return $api.post<VoteResponse>(`${API_TEAMS}/voteplus`, {team, user})
+    }
+
+    static async voteMinus(team: string, user: string): Promise<AxiosResponse<VoteResponse>> {
+        return $api.post<VoteResponse>(`${API_TEAMS}/voteminus`, {team, user})
     }
 }
 

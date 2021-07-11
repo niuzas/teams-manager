@@ -18,7 +18,7 @@ class TeamService {
     return { team: teamDto };
   }
 
-  async vote(teamId, userId) {
+  async votePlus(teamId, userId) {
     const team = await TeamModel.findById(teamId);
     if (!team) {
       throw ApiError.BadRequest('Komanda nerasta');
@@ -32,7 +32,25 @@ class TeamService {
     const userDto = new UserDto(user);
     const teamDto = new TeamDto(team);
 
-    await VoteService.saveVote(teamDto.id, userDto.id);
+    await VoteService.saveVotePlus(teamDto.id, userDto.id);
+    return { team: teamDto, user: userDto };
+  }
+
+  async voteMinus(teamId, userId) {
+    const team = await TeamModel.findById(teamId);
+    if (!team) {
+      throw ApiError.BadRequest('Komanda nerasta');
+    }
+
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw ApiError.BadRequest('Vartotojas nerastas');
+    }
+
+    const userDto = new UserDto(user);
+    const teamDto = new TeamDto(team);
+
+    await VoteService.saveVoteMinus(teamDto.id, userDto.id);
     return { team: teamDto, user: userDto };
   }
 
