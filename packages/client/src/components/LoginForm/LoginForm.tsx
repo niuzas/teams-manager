@@ -12,6 +12,7 @@ const LoginForm: FC = () => {
   return (
     <div>
       <S.LoginFormBlock>
+        <S.CloseButton onClick={() => store.setLogin(false)}>x</S.CloseButton>
         <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" placeholder="Emeilas" autoComplete="username" />
         <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Slaptažodis" autoComplete="on" />
       </S.LoginFormBlock>

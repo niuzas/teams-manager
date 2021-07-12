@@ -12,6 +12,9 @@ export default class Store {
     user = {} as IUser;
     isAuth = false;
     isLoading = false;
+    isLogin = false;
+    isRegistration = false;
+    isProfile=false;
 
     constructor() {
         makeAutoObservable(this);
@@ -27,6 +30,20 @@ export default class Store {
 
     setLoading(bool: boolean) {
         this.isLoading = bool;
+    }
+
+    setLogin(bool: boolean) {
+        this.isLogin = !this.isLogin;
+        if (bool) this.isRegistration = false;
+    }
+    setRegistration(bool: boolean) {
+        this.isRegistration = !this.isRegistration;
+        if (bool) this.isLogin = false;
+    }
+
+    setProfile(bool: boolean) {
+        if (this.isAuth) this.isProfile = !this.isProfile;
+       
     }
 
     async login(email: string, password: string) {
@@ -104,5 +121,8 @@ export default class Store {
             return {allok: false,error:e};
         }
     }
+
+
+
 
 }

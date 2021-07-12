@@ -13,6 +13,7 @@ const RegistrationForm: FC = () => {
   return (
     <div>
       <S.RegistrationFormBlock>
+        <S.CloseButton onClick={() => store.setRegistration(false)}>x</S.CloseButton>
         <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Vardas" />
         <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" placeholder="Emeilas" autoComplete="username" />
         <input

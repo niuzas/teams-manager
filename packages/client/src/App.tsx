@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import Loader from './components/Loader/Loader';
 import { Context } from './index';
 import * as P from './pages';
+// import Routes from './Routes';
 
 const App: FC = () => {
   const { store } = useContext(Context);
