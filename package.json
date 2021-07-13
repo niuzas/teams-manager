@@ -6,8 +6,9 @@
   ],
   "scripts": {
     "client": "yarn workspace client start",
+    "storybook": "yarn workspace client run storybook",
     "server": "yarn workspace server run dev",
-    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\" \"yarn storybook\""
   },
   "dependencies": {
     "concurrently": "^6.2.0"

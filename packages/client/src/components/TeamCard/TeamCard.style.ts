@@ -19,6 +19,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 font-size: 1em;
 font-weight: 600;
 color: #504f54;
+margin-top: 1em;
 `;
 
 export const TeamScore=styled.span`
