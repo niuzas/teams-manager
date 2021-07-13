@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 4000 -c .storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +51,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
     "@storybook/react": "^6.3.4",
-    "@types/prop-types": "^15.7.4"
+    "@types/prop-types": "^15.7.4",
+    "@types/storybook__react": "^5.2.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.2.2",
+    "mini-css-extract-plugin": "^2.1.0",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0"
   }
 }
