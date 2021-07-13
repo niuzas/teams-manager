@@ -1,9 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "nodemon ./src/index.js"
   },
   "keywords": [],
