@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 
 import * as S from './LoginForm.style';
 
-const LoginForm: FC = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { store } = useContext(Context);

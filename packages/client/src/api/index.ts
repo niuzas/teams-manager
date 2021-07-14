@@ -4,6 +4,7 @@ import {AuthResponse} from "../models/AuthResponse";
 // import {IUser} from "../models/IUser";
 
 export const API_URL = `http://localhost:5000/api`
+// export const API_URL = `https://teams-manager-78dz8.ondigitalocean.app/api`
 export const API_AUTH = `${API_URL}/auth`
 export const API_USERS = `${API_URL}/users`
 export const API_TEAMS = `${API_URL}/teams`
