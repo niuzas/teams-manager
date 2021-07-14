@@ -6,7 +6,7 @@ export const LoaderBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  /* background-color: lightgray; */
 `;
 
 export const LoaderElement = styled.div`
